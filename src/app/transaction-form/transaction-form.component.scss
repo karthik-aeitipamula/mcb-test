@@ -1,0 +1,19 @@
+form{
+  width: 400px;
+  margin: 16px auto;
+  border: 1px solid #ededed;
+  padding: 16px;
+  mat-form-field{
+    width: 100%;
+  }
+  .amount{
+    display: flex;
+    column-gap: 16px;
+    div:first-child{
+      width: 100px;
+    }
+    div:nth-child(2){
+      flex: 1;
+    }
+  }
+}

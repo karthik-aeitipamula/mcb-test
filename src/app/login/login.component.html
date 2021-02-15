@@ -1,0 +1,25 @@
+<h1 class="align-center">Welcome to MCB!</h1>
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <div>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Username" formControlName="username">
+        <mat-error *ngIf="loginForm.controls['username'].invalid">
+          Username required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Password" formControlName="password">
+        <mat-error *ngIf="loginForm.controls['password'].invalid">
+          Password required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button id="loginbutton" type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+
+  </form>
+</mat-card>

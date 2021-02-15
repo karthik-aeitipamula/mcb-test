@@ -1,0 +1,19 @@
+.transaction {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 16px;
+  padding: 16px;
+  border-bottom: 1px solid #ededed;
+  &__title{
+      font-weight: bold;
+    }
+}
+.no-transaction {
+  width: 200px;
+  margin: 16px auto;
+  text-align: center;
+}
+h1{
+  text-align: center;
+}

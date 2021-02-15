@@ -1,0 +1,13 @@
+<h1>Transaction Details</h1>
+<div class="transaction" *ngFor="let item of transactionList">
+  <div class="transaction__title">Customer Name:</div>
+  <div>{{item.customerName}}</div>
+  <div class="transaction__title">Reference: </div>
+  <div>{{item.reference}}</div>
+  <div class="transaction__title">Amount</div>
+  <div>{{item.transferCurrency}} {{item.transferAmount}}</div>
+</div>
+<div class="no-transaction"  >
+  <h3 *ngIf="transactionList.length === 0">No transaction.</h3>
+  <button mat-raised-button color="primary" [routerLink]="['/createTansaction']">Create Transaction</button>
+</div>
