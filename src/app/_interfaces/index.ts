@@ -10,4 +10,13 @@ export interface transaction {
     beneficiaryAccountNumber: string,
     paymentDetails: string
 }
+export interface List {
+  reference?:string;
+  customerName?:string;
+  transferAmount?: number,
+  transferCurrency?: string,
+}
+
+
+
 

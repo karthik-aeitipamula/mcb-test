@@ -9,13 +9,15 @@ import { AuthserviceService } from './_services/authservice.service';
 export class AppComponent implements OnInit{
   title = 'My Bank App';
   showLogoutButton = false;
+
   constructor(public _authserviceService: AuthserviceService) { }
+
   ngOnInit() {
-    console.log(this._authserviceService.isUserLoggedIn())
     this._authserviceService.userStateChange.subscribe((value) => {
       this.showLogoutButton = value;
     });
   }
+
   logout() {
     this._authserviceService.logout();
   }

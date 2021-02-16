@@ -21,9 +21,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## What's included
-- [x] Login page with authGuard (Use following credentials to login, username: user, password: user)
+- [x] Login page with authGuard (Use following credentials to login, username: `user`, password: `user`)
 - [x] Custom home page with 3 actions : Logout, Create New transaction, View Transactions
 - [x] Sample Api used for post (https://jsonplaceholder.typicode.com/posts) .
+- [x] Use (`10000`, `20000`, `30000`) customer numbers to fetch customer data in create transaction form.
 - [x] SASS  and BEM styles whereever necessary.
 - [x] Regex used for validations
 - [x] ES6 Promises and Observables
