@@ -1,105 +1,94 @@
-<form [formGroup]="newTransaction" (ngSubmit)="submitTransactionForm()">
-  <h2>Create New Transaction</h2>
-  <div>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Reference" formControlName="reference" [readonly]="true">
-      <mat-error *ngIf="userTransactionControls.reference.errors?.required">
-        Reference required
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <h3>Customer Data</h3>
-  <div>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Customer Number" formControlName="customerNumber" maxlength="5">
-
-        <mat-error *ngIf="userTransactionControls.customerNumber.errors?.required">
-          Customer Number required
-        </mat-error>
-        <mat-error *ngIf="userTransactionControls.customerNumber.errors?.minlength">
-          Customer Number must have  5 characters
-        </mat-error>
-        <mat-error *ngIf="userTransactionControls.customerNumber.errors?.pattern">
-          Customer Number must contain only numbers
-        </mat-error>
-
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Customer Name" formControlName="customerName" [readonly]="true">
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Customer Address" formControlName="customerAddress" [readonly]="true">
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Customer Phone Number" formControlName="customerPhone" [readonly]="true">
-    </mat-form-field>
-  </div>
-  <h3>Details</h3>
-  <div class="amount">
-    <div>
+<h2 class="align-center">Create New Transaction</h2>
+<form [formGroup]="newTransaction" (ngSubmit)="submitTransactionForm()" >
+  <div class="transaction-form">
+    <div class="transaction-form__customerDetail">
+      <div class="transaction-form__customerDetail--refNo">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Reference" formControlName="reference" [readonly]="true">
+          <mat-error *ngIf="userTransactionControls.reference.errors?.required">
+            Reference required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <h3>Customer Data</h3>
       <mat-form-field>
-        <mat-label>Currency</mat-label>
-        <mat-select formControlName="transferCurrency">
-          <mat-option *ngFor="let currency of currencies" [value]="currency">
-            {{currency}}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="userTransactionControls.transferCurrency.errors?.required">
-          You must make a selection
+        <input type="text" matInput placeholder="Customer Number" formControlName="customerNumber" maxlength="5">
+
+          <mat-error *ngIf="userTransactionControls.customerNumber.errors?.required">
+            Customer Number required
+          </mat-error>
+          <mat-error *ngIf="userTransactionControls.customerNumber.errors?.minlength">
+            Customer Number must have  5 characters
+          </mat-error>
+          <mat-error *ngIf="userTransactionControls.customerNumber.errors?.pattern">
+            Customer Number must contain only numbers
+          </mat-error>
+
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Customer Name" formControlName="customerName" [readonly]="true">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Customer Address" formControlName="customerAddress" [readonly]="true">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Customer Phone Number" formControlName="customerPhone" [readonly]="true">
+      </mat-form-field>
+    </div>
+    <div class="transaction-form__bankDetail">
+      <h3>Details</h3>
+      <div class="transaction-form__bankDetail--amount">
+        <mat-form-field>
+          <mat-label>Currency</mat-label>
+          <mat-select formControlName="transferCurrency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency">
+              {{currency}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="userTransactionControls.transferCurrency.errors?.required">
+            You must make a selection
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Transfer Amount" formControlName="transferAmount">
+          <mat-error *ngIf="userTransactionControls.transferAmount.errors?.required">
+            Transfer Amount required
+          </mat-error>
+          <mat-error *ngIf="userTransactionControls.transferAmount.errors?.pattern">
+            Transfer Amount must contain only numbers
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Beneficiary Bank" formControlName="beneficiaryBank">
+        <mat-error *ngIf="userTransactionControls.beneficiaryBank.errors?.required">
+          Beneficiary Bank required
+        </mat-error>
+        <mat-error *ngIf="userTransactionControls.beneficiaryBank.errors?.pattern">
+          Beneficiary Bank must contain only alpha characters
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Beneficiary Account Number" formControlName="beneficiaryAccountNumber">
+        <mat-error *ngIf="userTransactionControls.beneficiaryAccountNumber.errors?.required">
+          Beneficiary Account Number required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput placeholder="Payment Details" formControlName="paymentDetails">
+        <mat-error *ngIf="userTransactionControls.paymentDetails.errors?.required">
+          Payment Details required
+        </mat-error>
+        <mat-error *ngIf="userTransactionControls.paymentDetails.errors?.pattern">
+          Payment Details must contain only alpha characters
         </mat-error>
       </mat-form-field>
     </div>
-    <div>
-      <mat-form-field>
-        <input type="text" matInput placeholder="Transfer Amount" formControlName="transferAmount">
-        <mat-error *ngIf="userTransactionControls.transferAmount.errors?.required">
-          Transfer Amount required
-        </mat-error>
-        <mat-error *ngIf="userTransactionControls.transferAmount.errors?.pattern">
-          Transfer Amount must contain only numbers
-        </mat-error>
-      </mat-form-field>
-    </div>
+  </div>
+  <div class="transaction-form__action">
+    <button type="submit" id="createTransaction" mat-raised-button color="primary" [disabled]="!newTransaction.valid">Create</button>
   </div>
 
-  <div>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Beneficiary Bank" formControlName="beneficiaryBank">
-      <mat-error *ngIf="userTransactionControls.beneficiaryBank.errors?.required">
-        Beneficiary Bank required
-      </mat-error>
-      <mat-error *ngIf="userTransactionControls.beneficiaryBank.errors?.pattern">
-        Beneficiary Bank must contain only alpha characters
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Beneficiary Account Number" formControlName="beneficiaryAccountNumber">
-      <mat-error *ngIf="userTransactionControls.beneficiaryAccountNumber.errors?.required">
-        Beneficiary Account Number required
-      </mat-error>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Payment Details" formControlName="paymentDetails">
-      <mat-error *ngIf="userTransactionControls.paymentDetails.errors?.required">
-        Payment Details required
-      </mat-error>
-      <mat-error *ngIf="userTransactionControls.paymentDetails.errors?.pattern">
-        Payment Details must contain only alpha characters
-      </mat-error>
-    </mat-form-field>
-  </div>
-
-  <button type="submit" id="createTransaction" mat-raised-button color="primary" [disabled]="!newTransaction.valid">Create</button>
 
 </form>
 
