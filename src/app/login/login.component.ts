@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthserviceService } from '../_services/authservice.service';
 
 
@@ -11,7 +10,8 @@ import { AuthserviceService } from '../_services/authservice.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder,  private router: Router, private _authserviceService: AuthserviceService) { }
+  showError:boolean = false;
+  constructor(private formBuilder: FormBuilder, private _authserviceService: AuthserviceService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -23,8 +23,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return
     }
-    this._authserviceService.login(this.loginForm)
-
+    let userData = this.loginForm.value;
+    this.showError = false;
+    if (userData && userData['username'] === 'user' && userData['password'] === 'user') {
+      this._authserviceService.login(this.loginForm)
+    } else {
+      this.showError = true;
+    }
   }
 
 }

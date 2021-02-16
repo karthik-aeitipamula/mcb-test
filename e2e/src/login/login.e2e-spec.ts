@@ -15,11 +15,11 @@ describe('protractor-tutorial - Login page', () => {
     publicPage = new PublicPage();
   });
 
-  it('when user trying to login with wrong credentials he should stay on “login” page and see error notification', () => {
+  it('when user trying to login with wrong credentials he should stay on “login”', () => {
     page.navigateTo();
     page.fillCredentials(wrongCredentias);
     expect(page.getPageTitleText()).toEqual('Login');
-    // expect(page.getErrorMessage()).toEqual('Username or password is incorrect');
+    expect(page.getErrorMessage()).toEqual('Wrong Username and Password');
   });
 
   it('when login is successful — he should redirect to default home page', () => {

@@ -21,4 +21,7 @@ export class LoginPage {
   getPageTitleText() {
     return element(by.css('app-root .mat-card-title')).getText();
   }
+  getErrorMessage() {
+    return element(by.css('#errorMessage')).getText();
+  }
 }
